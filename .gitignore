@@ -2,7 +2,7 @@
 venv/
 
 # Banco de Dados
-Universidad.db
+Universidade.db
 *.sqlite3
 
 # Arquivos compilados do Python

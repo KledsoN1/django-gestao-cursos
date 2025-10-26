@@ -6,34 +6,34 @@ from django.contrib import messages
 
 
 def home(request):
-    cursosListados = Curso.objects.all()
+    cursos_listados = Curso.objects.all()
     messages.success(request, 'Cursos listados com sucesso!')
-    return render(request, "gestionCursos.html", {"cursos": cursosListados})
+    return render(request, "gestaoCursos.html", {"cursos": cursos_listados})
 
 
-def registrarCurso(request):
+def registrar_curso(request):
     codigo = request.POST['txtCodigo']
-    nombre = request.POST['txtNombre']
+    nome = request.POST['txtNome']
     creditos = request.POST['numCreditos']
 
     curso = Curso.objects.create(
-        codigo=codigo, nombre=nombre, creditos=creditos)
+        codigo=codigo, nome=nome, creditos=creditos)
     messages.success(request, 'Curso cadastrado com sucesso!')
     return redirect('/')
 
 
-def edicionCurso(request, codigo):
+def edicao_curso(request, codigo):
     curso = Curso.objects.get(codigo=codigo)
-    return render(request, "edicionCurso.html", {"curso": curso})
+    return render(request, "edicaoCurso.html", {"curso": curso})
 
 
-def editarCurso(request):
+def editar_curso(request):
     codigo = request.POST['txtCodigo']
-    nombre = request.POST['txtNombre']
+    nome = request.POST['txtNome']
     creditos = request.POST['numCreditos']
 
     curso = Curso.objects.get(codigo=codigo)
-    curso.nombre = nombre
+    curso.nome = nome
     curso.creditos = creditos
     curso.save()
 
@@ -42,7 +42,7 @@ def editarCurso(request):
     return redirect('/')
 
 
-def eliminarCurso(request, codigo):
+def excluir_curso(request, codigo):
     curso = Curso.objects.get(codigo=codigo)
     curso.delete()
 
